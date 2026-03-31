@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maksim Alimov | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0c1017;
+      --bg-2: #131923;
+      --panel: rgba(18, 24, 34, 0.92);
+      --panel-2: rgba(22, 28, 39, 0.94);
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text: #f3f5f9;
+      --muted: #a6afbe;
+      --accent: #9fb4d9;
+      --accent-2: #d8dee9;
+      --shadow: 0 18px 40px rgba(0,0,0,0.22);
+      --radius-xl: 22px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --maxw: 1220px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0b0f16 0%, #111721 100%);
+      line-height: 1.62;
+      letter-spacing: -0.01em;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at top center, rgba(255,255,255,0.03), transparent 40%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 22, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .brand-copy { min-width: 0; }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      font-size: 15px;
+    }
+
+    .brand-role {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a,
+    .lang button,
+    .button,
+    .chip-link {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 14px;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav a:hover,
+    .lang button:hover,
+    .button:hover,
+    .chip-link:hover {
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .lang { display: flex; gap: 8px; }
+
+    .lang button.active {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .hero {
+      padding: 44px 0 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.24fr) minmax(320px, 0.76fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-main {
+      padding: 38px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: #d7dde7;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #bcc6d6;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 700px;
+    }
+
+    .hero-role {
+      font-size: clamp(18px, 2vw, 23px);
+      color: #d8deea;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-desc {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .button.primary {
+      background: #e8ecf3;
+      color: #111721;
+      border-color: #e8ecf3;
+      font-weight: 600;
+    }
+
+    .button.primary:hover {
+      background: #f3f5f9;
+      border-color: #f3f5f9;
+    }
+
+    .hero-side {
+      padding: 22px;
+      display: grid;
+      gap: 16px;
+      background: var(--panel-2);
+    }
+
+    .side-block {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .side-label {
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric {
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section { padding: 18px 0 0; }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 42px);
+      letter-spacing: -0.05em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 20px;
+    }
+
+    .info-card,
+    .project-card,
+    .skill-card,
+    .contact-card {
+      background: rgba(18, 24, 34, 0.92);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .body-copy {
+      color: var(--muted);
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .body-copy + .body-copy { margin-top: 14px; }
+
+    .badge-row,
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .badge,
+    .chip {
+      border-radius: 999px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: #d9e1f7;
+      font-size: 13px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.02);
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .timeline-item strong {
+      display: block;
+      margin-bottom: 6px;
+      padding-left: 10px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      padding-left: 10px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 100%;
+    }
+
+    .project-card.wide { grid-column: 1 / -1; }
+
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .project-tag {
+      flex-shrink: 0;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: #dbe2ee;
+    }
+
+    .project-summary {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .project-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .project-list li + li { margin-top: 8px; }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card h3,
+    .contact-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .skill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-list li {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-line:last-child { border-bottom: 0; }
+
+    .contact-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .contact-value { word-break: break-word; }
+
+    footer {
+      padding: 30px 0 46px;
+      color: rgba(255,255,255,0.52);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1080px) {
+      .hero,
+      .split,
+      .projects,
+      .grid-3,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card.wide { grid-column: auto; }
+    }
+
+    @media (max-width: 780px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav { justify-content: flex-start; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      .container { width: min(var(--maxw), calc(100% - 20px)); }
+
+      .hero-main,
+      .hero-side,
+      .info-card,
+      .project-card,
+      .skill-card,
+      .contact-card {
+        padding: 20px;
+      }
+
+      .nav,
+      .hero-actions,
+      .project-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav a,
+      .lang,
+      .lang button,
+      .button,
+      .chip-link {
+        width: 100%;
+        text-align: center;
+      }
+
+      .metrics { grid-template-columns: 1fr; }
+
+      .project-top,
+      .contact-line {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">MA</div>
+        <div class="brand-copy">
+          <div class="brand-name">Maksim Alimov</div>
+          <div class="brand-role" data-i18n="brand.role">Game Developer · C++ · Unity · Unreal</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#education" data-i18n="nav.education">Education</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <div class="lang">
+          <button type="button" class="active" data-lang-btn="en">EN</button>
+          <button type="button" data-lang-btn="ru">RU</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="panel hero-main">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span data-i18n="hero.eyebrow">Available for internships and junior roles</span>
+        </div>
+        <h1 data-i18n="hero.name">Maksim Alimov</h1>
+        <div class="hero-role" data-i18n="hero.role">Game Developer | C++ | C# | Unity | Unreal Engine</div>
+        <div class="badge-row" style="margin-top: 0; margin-bottom: 14px; position: relative;">
+          <span class="badge">C++</span>
+          <span class="badge">Gameplay Systems</span>
+          <span class="badge">AI Integration</span>
+          <span class="badge">Engine Programming</span>
+        </div>
+        <p class="hero-desc" data-i18n="hero.desc">Game Development graduate from Algonquin College in Ottawa. I build gameplay systems, AI features, real-time tools, interface logic, and low-level engine functionality. My portfolio includes academic projects, a custom C++ engine, AI-driven systems, and a game jam project.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects" data-i18n="hero.ctaProjects">View Projects</a>
+          <a class="button" href="#contact" data-i18n="hero.ctaContact">Contact Me</a>
+          <a class="button" href="mailto:DDDEC1DE@yandex.ru" data-i18n="hero.ctaEmail">Email Me</a>
+        </div>
+      </div>
+
+      <aside class="panel hero-side">
+        <div class="side-block">
+          <div class="side-label" data-i18n="side.label1">Quick profile</div>
+          <div class="metrics">
+            <div class="metric">
+              <strong>5</strong>
+              <span data-i18n="side.stat1">Featured projects</span>
+            </div>
+            <div class="metric">
+              <strong>C++</strong>
+              <span data-i18n="side.stat2">Core development focus</span>
+            </div>
+            <div class="metric">
+              <strong>Unity</strong>
+              <span data-i18n="side.stat3">Gameplay systems</span>
+            </div>
+            <div class="metric">
+              <strong>AI</strong>
+              <span data-i18n="side.stat4">Integration and tooling</span>
+            </div>
+          </div>
+        </div>
+        <div class="side-block">
+          <div class="side-label" data-i18n="side.label2">What this site shows</div>
+          <p class="body-copy" data-i18n="side.copy">A focused set of projects that show my work with rendering, AI, gameplay systems, networking, interfaces, and technical problem solving.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="about.title">About</h2>
+          <p data-i18n="about.sub">A short introduction and the type of technical work I enjoy most.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <article class="info-card">
+          <p class="body-copy" data-i18n="about.copy1">I studied Game Development at Algonquin College in Ottawa, Canada. During the program I worked on engine programming, gameplay features, mission systems, AI, real-time networking, interface work, and internal tools for interactive projects.</p>
+          <p class="body-copy" data-i18n="about.copy2">I enjoy building systems that sit underneath the player experience: rendering pipelines, gameplay logic, AI communication, project architecture, and tools that make development cleaner and more scalable.</p>
+          <div class="badge-row">
+            <span class="badge">C++</span>
+            <span class="badge">C#</span>
+            <span class="badge">Unity</span>
+            <span class="badge">Unreal Engine</span>
+            <span class="badge">Node.js</span>
+            <span class="badge">AI Systems</span>
+            <span class="badge">Rendering</span>
+            <span class="badge">UI / Frontend</span>
+          </div>
+        </article>
+
+        <article class="info-card">
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong data-i18n="about.point1title">Technical focus</strong>
+              <p data-i18n="about.point1desc">Gameplay systems, engine-level programming, AI integration, real-time communication, and tools.</p>
+            </div>
+            <div class="timeline-item">
+              <strong data-i18n="about.point2title">Preferred stack</strong>
+              <p data-i18n="about.point2desc">C++, C#, Unity, Unreal Engine, Node.js, shaders, interface work, and debugging-oriented workflows.</p>
+            </div>
+            <div class="timeline-item">
+              <strong data-i18n="about.point3title">How I work</strong>
+              <p data-i18n="about.point3desc">I like structured systems, clear responsibility boundaries, and projects where implementation quality matters as much as the end result.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="projects.title">My Projects</h2>
+          <p data-i18n="projects.sub">College and independent work that shows different parts of my technical range.</p>
+        </div>
+      </div>
+
+      <div class="projects">
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3 data-i18n="projects.engine.title">Custom C++ Engine</h3>
+            </div>
+            <span class="project-tag" data-i18n="projects.engine.tag">College Project</span>
+          </div>
+          <p class="project-summary" data-i18n="projects.engine.summary">A custom game engine built from scratch with focus on rendering, lighting systems, scene architecture, and engine-side technical implementation.</p>
+          <ul class="project-list">
+            <li data-i18n="projects.engine.li1">Implemented a multi-light system using uniform arrays for dynamic lighting.</li>
+            <li data-i18n="projects.engine.li2">Built runtime logic for adding and removing light sources.</li>
+            <li data-i18n="projects.engine.li3">Added nearest-light selection per object for more controlled rendering behavior.</li>
+            <li data-i18n="projects.engine.li4">Worked with shader debugging and graphics-side integration.</li>
+          </ul>
+          <div class="project-actions">
+            <a class="chip-link" href="https://github.com/DDDEC1DE/25W_GG3" target="_blank" rel="noreferrer">GitHub</a>
+            <span class="chip" data-i18n="projects.engine.note">Public portfolio repo in progress</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3 data-i18n="projects.delivery.title">Pixel Parcel Production - Delivery Game (Team of 10)</h3>
+            </div>
+            <span class="project-tag" data-i18n="projects.delivery.tag">Unity Project</span>
+          </div>
+          <p class="project-summary" data-i18n="projects.delivery.summary">A delivery-focused game project built around mission flow, route logic, package objectives, dynamic hazards, and performance-based evaluation.</p>
+          <ul class="project-list">
+            <li data-i18n="projects.delivery.li1">Created a mission manager to handle delivery objectives and progression.</li>
+            <li data-i18n="projects.delivery.li2">Implemented sequential delivery points spawned one at a time.</li>
+            <li data-i18n="projects.delivery.li3">Used NavMesh-based route calculation for delivery flow.</li>
+            <li data-i18n="projects.delivery.li4">Added timing and rating logic for delivery performance.</li>
+            <li data-i18n="projects.delivery.li5">Built a tornado mechanic with spawning, movement, and pull physics that affect objects, characters, and the player.</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3 data-i18n="projects.npc.title">AI NPC System</h3>
+            </div>
+            <span class="project-tag" data-i18n="projects.npc.tag">Unreal + Node.js</span>
+          </div>
+          <p class="project-summary" data-i18n="projects.npc.summary">A real-time NPC interaction system connecting Unreal Engine C++ code with a backend server for AI-driven responses.</p>
+          <ul class="project-list">
+            <li data-i18n="projects.npc.li1">Integrated Socket.IO communication between Unreal and Node.js.</li>
+            <li data-i18n="projects.npc.li2">Handled structured NPC responses with dialog, emotion, and action data.</li>
+            <li data-i18n="projects.npc.li3">Worked on client-server event flow and message-driven gameplay interaction.</li>
+            <li data-i18n="projects.npc.li4">Connected AI service logic to in-game systems.</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <h3 data-i18n="projects.rag.title">RAG / AI Pipeline Project</h3>
+            </div>
+            <span class="project-tag" data-i18n="projects.rag.tag">AI Systems</span>
+          </div>
+          <p class="project-summary" data-i18n="projects.rag.summary">A retrieval-augmented generation pipeline for context-aware AI responses using document processing, embeddings, and vector search.</p>
+          <ul class="project-list">
+            <li data-i18n="projects.rag.li1">Processed documents into chunks for retrieval-ready indexing.</li>
+            <li data-i18n="projects.rag.li2">Generated embeddings and stored vectors for semantic search.</li>
+            <li data-i18n="projects.rag.li3">Built context retrieval flow for AI prompting.</li>
+            <li data-i18n="projects.rag.li4">Worked with pipeline structure that combines retrieval and generation.</li>
+          </ul>
+        </article>
+
+        <article class="project-card wide">
+          <div class="project-top">
+            <div>
+              <h3 data-i18n="projects.jam.title">SaltW JuneJam - For Life and Science (Team of 4)</h3>
+            </div>
+            <span class="project-tag" data-i18n="projects.jam.tag">Team / Rapid Development</span>
+          </div>
+          <p class="project-summary" data-i18n="projects.jam.summary">A team-built game jam project developed under tight deadlines, focused on fast implementation, teamwork, interface work, and shipping a playable result.</p>
+          <ul class="project-list">
+            <li data-i18n="projects.jam.li1">Built and iterated core gameplay features under strict time constraints.</li>
+            <li data-i18n="projects.jam.li2">Worked in a team environment with shared responsibilities and rapid decision-making.</li>
+            <li data-i18n="projects.jam.li3">Contributed to a playable build delivered on deadline.</li>
+            <li data-i18n="projects.jam.li4">Worked on the game interface and contributed to front-end development during the jam.</li>
+            <li data-i18n="projects.jam.li5">Demonstrated practical execution speed and collaboration in production-like conditions.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="skills.title">Skills</h2>
+          <p data-i18n="skills.sub">Technologies and technical areas I use across projects.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="skill-card">
+          <h3 data-i18n="skills.group1">Languages</h3>
+          <ul class="skill-list">
+            <li>C++</li>
+            <li>C#</li>
+            <li>JavaScript</li>
+            <li>TypeScript</li>
+          </ul>
+        </article>
+
+        <article class="skill-card">
+          <h3 data-i18n="skills.group2">Engines & Tools</h3>
+          <ul class="skill-list">
+            <li>Unity</li>
+            <li>Unreal Engine</li>
+            <li>Visual Studio</li>
+            <li>Visual Studio Code</li>
+            <li>Git</li>
+            <li>ImGui</li>
+            <li>Photoshop</li>
+            <li>3ds Max</li>
+            <li>Blender</li>
+          </ul>
+        </article>
+
+        <article class="skill-card">
+          <h3 data-i18n="skills.group3">Technical Areas</h3>
+          <ul class="skill-list">
+            <li data-i18n="skills.area1">Gameplay Systems</li>
+            <li data-i18n="skills.area2">AI Integration</li>
+            <li data-i18n="skills.area3">Networking</li>
+            <li data-i18n="skills.area4">Rendering</li>
+            <li data-i18n="skills.area5">Shaders</li>
+            <li data-i18n="skills.area6">UI / Frontend</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="education.title">Education</h2>
+          <p data-i18n="education.sub">Academic background relevant to the projects in this portfolio.</p>
+        </div>
+      </div>
+
+      <article class="info-card">
+        <p class="body-copy"><strong data-i18n="education.school">Algonquin College, Ottawa, Canada</strong></p>
+        <p class="body-copy" data-i18n="education.program">Game Development Program</p>
+        <p class="body-copy" data-i18n="education.copy">Studied game programming, systems design, real-time development, AI, and project-based implementation through technical coursework and team projects.</p>
+      </article>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="contact.title">Contact</h2>
+          <p data-i18n="contact.sub">Email and GitHub are the fastest ways to reach me and review my work.</p>
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <article class="contact-card">
+          <h3 data-i18n="contact.direct">Direct Contact</h3>
+          <div class="contact-line">
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">DDDEC1DE@yandex.ru</div>
+            </div>
+            <a class="button" href="mailto:DDDEC1DE@yandex.ru">Email</a>
+          </div>
+          <div class="contact-line">
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">mellinov337@gmail.com</div>
+            </div>
+            <a class="button" href="mailto:mellinov337@gmail.com">Email</a>
+          </div>
+          <div class="contact-line">
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">github.com/DDDEC1DE</div>
+            </div>
+            <a class="button" href="https://github.com/DDDEC1DE" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </article>
+
+        <article class="contact-card">
+          <h3 data-i18n="contact.summaryTitle">Portfolio Overview</h3>
+          <p class="body-copy" data-i18n="contact.summaryCopy">This portfolio gives a quick overview of my technical background, project experience, and development focus. I can also provide additional implementation details, repository access, and project walkthroughs on request.</p>
+          <div class="chips">
+            <span class="chip" data-i18n="contact.tip1">Gameplay Systems</span>
+            <span class="chip" data-i18n="contact.tip2">AI Integration</span>
+            <span class="chip" data-i18n="contact.tip3">Engine Work</span>
+            <span class="chip" data-i18n="contact.tip4">UI / Frontend</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span data-i18n="footer.text">Portfolio website for job applications and professional presentation.</span>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        'brand.role': 'Game Developer · C++ · Unity · Unreal',
+        'nav.about': 'About',
+        'nav.projects': 'Projects',
+        'nav.skills': 'Skills',
+        'nav.education': 'Education',
+        'nav.contact': 'Contact',
+        'hero.eyebrow': 'Available for internships and junior roles',
+        'hero.name': 'Maksim Alimov',
+        'hero.role': 'Game Developer | C++ | C# | Unity | Unreal Engine',
+        'hero.desc': 'Game Development graduate from Algonquin College in Ottawa. I build gameplay systems, AI features, real-time tools, interface logic, and low-level engine functionality. My portfolio includes academic projects, a custom C++ engine, AI-driven systems, and a game jam project.',
+        'hero.ctaProjects': 'View Projects',
+        'hero.ctaContact': 'Contact Me',
+        'hero.ctaEmail': 'Email Me',
+        'side.label1': 'Quick profile',
+        'side.stat1': 'Featured projects',
+        'side.stat2': 'Core development focus',
+        'side.stat3': 'Gameplay systems',
+        'side.stat4': 'Integration and tooling',
+        'side.label2': 'What this site shows',
+        'side.copy': 'A focused set of projects that show my work with rendering, AI, gameplay systems, networking, interfaces, and technical problem solving.',
+        'about.title': 'About',
+        'about.sub': 'A short introduction and the type of technical work I enjoy most.',
+        'about.copy1': 'I studied Game Development at Algonquin College in Ottawa, Canada. During the program I worked on engine programming, gameplay features, mission systems, AI, real-time networking, interface work, and internal tools for interactive projects.',
+        'about.copy2': 'I enjoy building systems that sit underneath the player experience: rendering pipelines, gameplay logic, AI communication, project architecture, and tools that make development cleaner and more scalable.',
+        'about.point1title': 'Technical focus',
+        'about.point1desc': 'Gameplay systems, engine-level programming, AI integration, real-time communication, and tools.',
+        'about.point2title': 'Preferred stack',
+        'about.point2desc': 'C++, C#, Unity, Unreal Engine, Node.js, shaders, interface work, and debugging-oriented workflows.',
+        'about.point3title': 'How I work',
+        'about.point3desc': 'I like structured systems, clear responsibility boundaries, and projects where implementation quality matters as much as the end result.',
+        'projects.title': 'My Projects',
+        'projects.sub': 'College and independent work that shows different parts of my technical range.',
+        'projects.engine.title': 'Custom C++ Engine',
+        'projects.engine.tag': 'College Project',
+        'projects.engine.summary': 'A custom game engine built from scratch with focus on rendering, lighting systems, scene architecture, and engine-side technical implementation.',
+        'projects.engine.li1': 'Implemented a multi-light system using uniform arrays for dynamic lighting.',
+        'projects.engine.li2': 'Built runtime logic for adding and removing light sources.',
+        'projects.engine.li3': 'Added nearest-light selection per object for more controlled rendering behavior.',
+        'projects.engine.li4': 'Worked with shader debugging and graphics-side integration.',
+        'projects.engine.note': 'Public portfolio repo in progress',
+        'projects.delivery.title': 'Pixel Parcel Production - Delivery Game (Team of 10)',
+        'projects.delivery.tag': 'Unity Project',
+        'projects.delivery.summary': 'A delivery-focused game project built around mission flow, route logic, package objectives, dynamic hazards, and performance-based evaluation.',
+        'projects.delivery.li1': 'Created a mission manager to handle delivery objectives and progression.',
+        'projects.delivery.li2': 'Implemented sequential delivery points spawned one at a time.',
+        'projects.delivery.li3': 'Used NavMesh-based route calculation for delivery flow.',
+        'projects.delivery.li4': 'Added timing and rating logic for delivery performance.',
+        'projects.delivery.li5': 'Built a tornado mechanic with spawning, movement, and pull physics that affect objects, characters, and the player.',
+        'projects.npc.title': 'AI NPC System',
+        'projects.npc.tag': 'Unreal + Node.js',
+        'projects.npc.summary': 'A real-time NPC interaction system connecting Unreal Engine C++ code with a backend server for AI-driven responses.',
+        'projects.npc.li1': 'Integrated Socket.IO communication between Unreal and Node.js.',
+        'projects.npc.li2': 'Handled structured NPC responses with dialog, emotion, and action data.',
+        'projects.npc.li3': 'Worked on client-server event flow and message-driven gameplay interaction.',
+        'projects.npc.li4': 'Connected AI service logic to in-game systems.',
+        'projects.rag.title': 'RAG / AI Pipeline Project',
+        'projects.rag.tag': 'AI Systems',
+        'projects.rag.summary': 'A retrieval-augmented generation pipeline for context-aware AI responses using document processing, embeddings, and vector search.',
+        'projects.rag.li1': 'Processed documents into chunks for retrieval-ready indexing.',
+        'projects.rag.li2': 'Generated embeddings and stored vectors for semantic search.',
+        'projects.rag.li3': 'Built context retrieval flow for AI prompting.',
+        'projects.rag.li4': 'Worked with pipeline structure that combines retrieval and generation.',
+        'projects.jam.title': 'SaltW JuneJam - For Life and Science (Team of 4)',
+        'projects.jam.tag': 'Team / Rapid Development',
+        'projects.jam.summary': 'A team-built game jam project developed under tight deadlines, focused on fast implementation, teamwork, interface work, and shipping a playable result.',
+        'projects.jam.li1': 'Built and iterated core gameplay features under strict time constraints.',
+        'projects.jam.li2': 'Worked in a team environment with shared responsibilities and rapid decision-making.',
+        'projects.jam.li3': 'Contributed to a playable build delivered on deadline.',
+        'projects.jam.li4': 'Worked on the game interface and contributed to front-end development during the jam.',
+        'projects.jam.li5': 'Demonstrated practical execution speed and collaboration in production-like conditions.',
+        'skills.title': 'Skills',
+        'skills.sub': 'Technologies and technical areas I use across projects.',
+        'skills.group1': 'Languages',
+        'skills.group2': 'Engines & Tools',
+        'skills.group3': 'Technical Areas',
+        'skills.area1': 'Gameplay Systems',
+        'skills.area2': 'AI Integration',
+        'skills.area3': 'Networking',
+        'skills.area4': 'Rendering',
+        'skills.area5': 'Shaders',
+        'skills.area6': 'UI / Frontend',
+        'education.title': 'Education',
+        'education.sub': 'Academic background relevant to the projects in this portfolio.',
+        'education.school': 'Algonquin College, Ottawa, Canada',
+        'education.program': 'Game Development Program',
+        'education.copy': 'Studied game programming, systems design, real-time development, AI, and project-based implementation through technical coursework and team projects.',
+        'contact.title': 'Contact',
+        'contact.sub': 'Email and GitHub are the fastest ways to reach me and review my work.',
+        'contact.direct': 'Direct Contact',
+        'contact.summaryTitle': 'Portfolio Overview',
+        'contact.summaryCopy': 'This portfolio gives a quick overview of my technical background, project experience, and development focus. I can also provide additional implementation details, repository access, and project walkthroughs on request.',
+        'contact.tip1': 'Gameplay Systems',
+        'contact.tip2': 'AI Integration',
+        'contact.tip3': 'Engine Work',
+        'contact.tip4': 'UI / Frontend',
+        'footer.text': 'Portfolio website for job applications and professional presentation.'
+      },
+      ru: {
+        'brand.role': 'Game Developer · C++ · Unity · Unreal',
+        'nav.about': 'Обо мне',
+        'nav.projects': 'Проекты',
+        'nav.skills': 'Навыки',
+        'nav.education': 'Образование',
+        'nav.contact': 'Контакты',
+        'hero.eyebrow': 'Открыт к стажировкам и junior-позициям',
+        'hero.name': 'Максим Алимов',
+        'hero.role': 'Game Developer | C++ | C# | Unity | Unreal Engine',
+        'hero.desc': 'Я окончил программу Game Development в Algonquin College в Оттаве. Специализируюсь на игровых системах, программировании на C++ и C#, интеграции AI, сетевом взаимодействии, интерфейсах и технических задачах уровня движка. На сайте собраны мои ключевые учебные проекты и работа с гейм джема.',
+        'hero.ctaProjects': 'Смотреть проекты',
+        'hero.ctaContact': 'Контакты',
+        'hero.ctaEmail': 'Написать на почту',
+        'side.label1': 'Кратко обо мне',
+        'side.stat1': 'Ключевых проектов',
+        'side.stat2': 'Основной техфокус',
+        'side.stat3': 'Игровые системы',
+        'side.stat4': 'Интеграция и инструменты',
+        'side.label2': 'Что показывает сайт',
+        'side.copy': 'Здесь собраны проекты, по которым можно быстро понять мой технический профиль: работа с рендерингом, AI, игровыми системами, сетевым взаимодействием, интерфейсами и технической логикой.',
+        'about.title': 'Обо мне',
+        'about.sub': 'Кратко о моем опыте и о том, какие технические задачи мне особенно интересны.',
+        'about.copy1': 'Я учился на программе Game Development в Algonquin College в Оттаве, Канада. Во время учебы работал над движком, игровыми механиками, системами миссий, AI, сетевым взаимодействием в реальном времени, интерфейсами и внутренними инструментами для проектов.',
+        'about.copy2': 'Мне особенно интересны системы, которые не видно игровому пользователю: рендеринг, игровая логика, коммуникация с AI, архитектура проекта и инструменты, которые делают разработку чище и масштабируемее.',
+        'about.point1title': 'Технический фокус',
+        'about.point1desc': 'Игровые системы, логика движка, AI-интеграция, сетевое взаимодействие в реальном времени и инструменты.',
+        'about.point2title': 'Основной стек',
+        'about.point2desc': 'C++, C#, Unity, Unreal Engine, Node.js, шейдеры, интерфейсы и отладка технических систем.',
+        'about.point3title': 'Подход к работе',
+        'about.point3desc': 'Мне нравятся структурные проекты с понятными зонами ответственности, где качество реализации так же важно, как и конечный результат.',
+        'projects.title': 'Мои Проекты',
+        'projects.sub': 'Учебные и самостоятельные проекты, которые показывают разные стороны моего технического профиля.',
+        'projects.engine.title': 'Собственный C++ движок',
+        'projects.engine.tag': 'Учебный проект',
+        'projects.engine.summary': 'Игровой движок, разработанный с нуля с упором на рендеринг, систему освещения, архитектуру сцены и техническую реализацию на стороне движка.',
+        'projects.engine.li1': 'Реализовал систему нескольких источников света через uniform-массивы.',
+        'projects.engine.li2': 'Сделал динамическое добавление и удаление источников света.',
+        'projects.engine.li3': 'Добавил выбор ближайших источников света для отдельных объектов.',
+        'projects.engine.li4': 'Работал с отладкой шейдеров и интеграцией графики на стороне движка.',
+        'projects.engine.note': 'Публичная версия репозитория для портфолио в процессе',
+        'projects.delivery.title': 'Pixel Parcel Production - Delivery Game (Команда из 10)',
+        'projects.delivery.tag': 'Проект на Unity',
+        'projects.delivery.summary': 'Игровой проект с миссиями, маршрутами, доставкой объектов, динамическими опасностями и оценкой результата игрока.',
+        'projects.delivery.li1': 'Создал mission manager для управления целями и логикой прогресса.',
+        'projects.delivery.li2': 'Реализовал последовательный спавн delivery points по одному.',
+        'projects.delivery.li3': 'Использовал NavMesh для расчета маршрута в процессе доставки.',
+        'projects.delivery.li4': 'Добавил систему времени и рейтинга за результат выполнения.',
+        'projects.delivery.li5': 'Создал механику торнадо: спавн, движение и физику притягивания объектов, персонажей и игрока.',
+        'projects.npc.title': 'AI NPC система',
+        'projects.npc.tag': 'Unreal + Node.js',
+        'projects.npc.summary': 'Система взаимодействия с NPC в реальном времени, которая соединяет C++ код в Unreal Engine с backend-сервером для AI-ответов.',
+        'projects.npc.li1': 'Интегрировал Socket.IO между Unreal и Node.js.',
+        'projects.npc.li2': 'Обрабатывал структурированные ответы NPC: диалог, эмоция и действие.',
+        'projects.npc.li3': 'Работал над клиент-серверным event flow и message-driven логикой.',
+        'projects.npc.li4': 'Подключал AI-сервис к внутриигровым системам.',
+        'projects.rag.title': 'RAG / AI pipeline проект',
+        'projects.rag.tag': 'AI Systems',
+        'projects.rag.summary': 'Пайплайн retrieval-augmented generation для контекстных AI-ответов с обработкой документов, embeddings и векторным поиском.',
+        'projects.rag.li1': 'Обрабатывал документы и разбивал их на чанки для индексирования.',
+        'projects.rag.li2': 'Генерировал embeddings и сохранял вектора для семантического поиска.',
+        'projects.rag.li3': 'Собирал логику извлечения контекста для AI-промптов.',
+        'projects.rag.li4': 'Работал с пайплайном, который объединяет retrieval и generation.',
+        'projects.jam.title': 'Гейм-Джем “SaltW JuneJam” – For Life and Science (Команда из 4)',
+        'projects.jam.tag': 'Команда / Быстрая разработка',
+        'projects.jam.summary': 'Командный проект, созданный в условиях жесткого дедлайна с упором на скорость, координацию, работу над интерфейсом и выпуск играбельной версии.',
+        'projects.jam.li1': 'Разрабатывал и быстро дорабатывал ключевые игровые механики в сжатые сроки.',
+        'projects.jam.li2': 'Работал в команде с распределением задач и быстрым принятием решений.',
+        'projects.jam.li3': 'Участвовал в выпуске играбельного билда к дедлайну.',
+        'projects.jam.li4': 'Работал над интерфейсом игры и участвовал во фронтенд-разработке во время гейм джема.',
+        'projects.jam.li5': 'Показал скорость практической реализации и умение работать в производственном темпе.',
+        'skills.title': 'Навыки',
+        'skills.sub': 'Технологии и технические области, которые я использую в проектах.',
+        'skills.group1': 'Языки',
+        'skills.group2': 'Движки и инструменты',
+        'skills.group3': 'Технические направления',
+        'skills.area1': 'Игровые системы',
+        'skills.area2': 'Интеграция AI',
+        'skills.area3': 'Сетевое взаимодействие',
+        'skills.area4': 'Рендеринг',
+        'skills.area5': 'Шейдеры',
+        'skills.area6': 'UI / Frontend',
+        'education.title': 'Образование',
+        'education.sub': 'Академическая база, связанная с проектами в этом портфолио.',
+        'education.school': 'Algonquin College, Оттава, Канада',
+        'education.program': 'Программа Game Development',
+        'education.copy': 'Изучал игровое программирование, проектирование систем, разработку real-time приложений, AI и практическую реализацию технических проектов в рамках учебной программы и командных заданий.',
+        'contact.title': 'Контакты',
+        'contact.sub': 'Почта и GitHub — самые быстрые способы связаться со мной и посмотреть код.',
+        'contact.direct': 'Прямые контакты',
+        'contact.summaryTitle': 'Кратко о портфолио',
+        'contact.summaryCopy': 'Это портфолио дает быстрое представление о моем техническом профиле, опыте в проектах и ключевых направлениях разработки. При необходимости могу дополнительно показать детали реализации, доступ к репозиториям и разобрать проекты подробнее.',
+        'contact.tip1': 'Игровые системы',
+        'contact.tip2': 'Интеграция AI',
+        'contact.tip3': 'Работа с движком',
+        'contact.tip4': 'UI / Frontend',
+        'footer.text': 'Сайт-портфолио для откликов на работу и профессиональной презентации.'
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        const value = translations[lang] && translations[lang][key];
+        if (typeof value === 'string') {
+          element.textContent = value;
+        }
+      });
+
+      document.querySelectorAll('[data-lang-btn]').forEach((button) => {
+        button.classList.toggle('active', button.getAttribute('data-lang-btn') === lang);
+      });
+    }
+
+    document.querySelectorAll('[data-lang-btn]').forEach((button) => {
+      button.addEventListener('click', () => {
+        setLanguage(button.getAttribute('data-lang-btn'));
+      });
+    });
+
+    setLanguage('en');
+  </script>
+</body>
+</html>
